@@ -5,6 +5,6 @@ export const updateClassicItem = (item) => {
     decrementQuality(item);
 
     if (outOfDate(item)) {
-        decrementQuality();
+        decrementQuality(item);
     }
 }

@@ -25,6 +25,23 @@ describe("GildedRose shop manager", function () {
     });
   });
 
+  it("Baisser de 2 la qualité et sellIn de 1 d'item normaux quand sellIn est négatif", function () {
+    listItems.push(new Item("+5 Dexterity Vest", 0, 20));
+    listItems.push(new Item("Mana Cake", 0, 6));
+
+    const gildedRose = new Shop(listItems);
+    const items = gildedRose.updateQuality();
+
+    var expected = [
+      { sellIn: -1, quality: 18 },
+      { sellIn: -1, quality: 4 }
+    ];
+    expected.forEach(function (testCase, idx) {
+      expect(items[idx].quality).toBe(testCase.quality);
+      expect(items[idx].sellIn).toBe(testCase.sellIn);
+    });
+  });
+
   it("La qualité des items ne peux pâs être négative", function () {
     listItems.push(new Item("+5 Dexterity Vest", 10, 0));
     listItems.push(new Item("Conjured Dark Blade", 4, 0));
